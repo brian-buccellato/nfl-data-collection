@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+import os
 # Scrapy settings for pro_football_reference project
 #
 # For simplicity, this file contains only settings considered important or
@@ -6,6 +8,8 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+
+load_dotenv()
 
 BOT_NAME = "pro_football_reference"
 
@@ -89,4 +93,17 @@ ROBOTSTXT_OBEY = True
 
 # Set settings whose default value is deprecated to a future-proof value
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+
+# feed export setings
 FEED_EXPORT_ENCODING = "utf-8"
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME")
+
+# FEEDS = {
+#     f"s3://{S3_BUCKET_NAME}/game_results/game_results.json": {
+#         "format": "jsonlines",
+#         "encoding": "utf8",
+#     }
+# }
+
