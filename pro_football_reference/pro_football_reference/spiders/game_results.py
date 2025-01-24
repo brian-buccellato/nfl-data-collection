@@ -41,19 +41,13 @@ class GameResultsSpider(scrapy.Spider):
                 yield game_result_item
 
     def start_requests(self) -> Iterable[scrapy.Request]:
-        if not self.season_year:
-            season_year = datetime.now().year
-            # current year must be previous year if the month is january through august
-            if datetime.now().month < 9:
-                season_year -= 1
-        else:
-            season_year = int(self.season_year)
+        season_year = int(self.season_year)
 
         self.start_urls = [
             f"https://www.pro-football-reference.com/years/{season_year}/games.htm"
         ]
         for url in self.start_urls:
-            yield scrapy.Request(url, dont_filter=True)
+            yield scrapy.Request(url)
 
     @classmethod
     def update_settings(cls, settings):
