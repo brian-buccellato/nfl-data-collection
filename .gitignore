@@ -1,1 +1,5 @@
+# don't commit env files
 .env
+
+# don't commit notebooks
+*.ipynb 
