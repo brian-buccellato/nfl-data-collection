@@ -7,6 +7,8 @@ name = "pypi"
 scrapy = "*"
 boto3 = "*"
 python-dotenv = "*"
+polars = "*"
+s3fs = "*"
 
 [dev-packages]
 
