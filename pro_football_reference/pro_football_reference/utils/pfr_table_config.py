@@ -1,0 +1,95 @@
+# change this to named tuple
+from collections import namedtuple
+
+# base config for each table item we want to extract
+StatConfig = namedtuple("StatConfig", ["index", "stat", "attr", "table_part"])
+
+GAME_RESULTS_CONFIG = [
+    StatConfig(None, "week_num", "week", "th"),
+    StatConfig(None, "game_day_of_week", "day_of_week", "td"),
+    StatConfig(None, "gametime", "game_time", "td"),
+    StatConfig(None, "winner", "winning_team", "td"),
+    StatConfig(None, "loser", "losing_team", "td"),
+    StatConfig(None, "pts_lose", "loser_points", "td"),
+    StatConfig(None, "yards_win", "winner_yards", "td"),
+    StatConfig(None, "yards_lose", "loser_yards", "td"),
+    StatConfig(None, "to_win", "winner_turnovers", "td"),
+    StatConfig(None, "to_lose", "loser_turnovers", "td"),
+]
+
+TEAM_STATS_AND_RANKINGS_CONFIG = [
+    StatConfig(0, "points", "points_for", "td"),
+    StatConfig(1, "points_opp", "points_against", "td"),
+    StatConfig(0, "total_yards", "yards_for", "td"),
+    StatConfig(1, "total_yards", "yards_against", "td"),
+    StatConfig(0, "pass_fd", "passing_first_downs", "td"),
+    StatConfig(1, "pass_fd", "passing_first_downs_against", "td"),
+    StatConfig(0, "pass_cmp", "completions", "td"),
+    StatConfig(1, "pass_cmp", "completions_against", "td"),
+    StatConfig(0, "pass_att", "attempts", "td"),
+    StatConfig(1, "pass_att", "attempts_against", "td"),
+    StatConfig(0, "pass_yds", "passing_yards", "td"),
+    StatConfig(1, "pass_yds", "passing_yards_against", "td"),
+    StatConfig(0, "pass_td", "passing_touchdowns", "td"),
+    StatConfig(1, "pass_td", "passing_touchdowns_against", "td"),
+    StatConfig(0, "pass_int", "interceptions_for", "td"),
+    StatConfig(1, "pass_int", "interceptions_against", "td"),
+    StatConfig(0, "pass_net_yds_per_att", "net_yards_per_pass_attempt", "td"),
+    StatConfig(1, "pass_net_yds_per_att", "net_yards_per_pass_attempt_against", "td"),
+    StatConfig(0, "rush_att", "rushing_attempts", "td"),
+    StatConfig(1, "rush_att", "rushing_attempts_against", "td"),
+    StatConfig(0, "rush_yds", "rushing_yards", "td"),
+    StatConfig(1, "rush_yds", "rushing_yards_against", "td"),
+    StatConfig(0, "rush_td", "rushing_touchdowns", "td"),
+    StatConfig(1, "rush_td", "rushing_touchdowns_against", "td"),
+    StatConfig(0, "rush_yds_per_att", "net_yards_per_rush_attempt", "td"),
+    StatConfig(1, "rush_yds_per_att", "net_yards_per_rush_attempt_against", "td"),
+    StatConfig(0, "penalties", "penalties", "td"),
+    StatConfig(1, "penalties", "opponent_penalties", "td"),
+    StatConfig(0, "penalties_yds", "penalty_yards", "td"),
+    StatConfig(1, "penalties_yds", "opponent_penalty_yards", "td"),
+    StatConfig(0, "pen_fd", "first_downs_from_penalties", "td"),
+    StatConfig(1, "pen_fd", "opponent_first_downs_from_penalties", "td"),
+    StatConfig(0, "drives", "number_of_drives", "td"),
+    StatConfig(1, "drives", "opponent_number_of_drives", "td"),
+    StatConfig(0, "score_pct", "percentage_of_drives_ending_in_score", "td"),
+    StatConfig(1, "score_pct", "opponent_percentage_of_drives_ending_in_score", "td"),
+    StatConfig(0, "turnover_pct", "percentage_of_drives_ending_in_turnover", "td"),
+    StatConfig(0, "start_avg", "average_starting_field_position", "td"),
+    StatConfig(1, "start_avg", "opponent_average_starting_field_position", "td"),
+    StatConfig(0, "time_avg", "time_per_drive", "td"),
+    StatConfig(1, "time_avg", "opponent_time_per_drive", "td"),
+    StatConfig(0, "plays_per_drive", "plays_per_drive", "td"),
+    StatConfig(1, "plays_per_drive", "opponent_plays_per_drive", "td"),
+    StatConfig(0, "yds_per_drive", "yards_per_drive", "td"),
+    StatConfig(1, "yds_per_drive", "opponent_yards_per_drive", "td"),
+    StatConfig(0, "points_avg", "points_per_drive", "td"),
+    StatConfig(1, "points_avg", "opponent_points_per_drive", "td"),
+]
+
+
+TEAM_CONVERSIONS_CONFIG = [
+    StatConfig(0, "third_down_att", "third_down_attempts", "td"),
+    StatConfig(0, "third_down_success", "third_down_conversions", "td"),
+    StatConfig(0, "third_down_pct", "third_down_conversion_percentage", "td"),
+    StatConfig(0, "fourth_down_att", "fourth_down_attempts", "td"),
+    StatConfig(0, "fourth_down_success", "fourth_down_conversions", "td"),
+    StatConfig(0, "fourth_down_pct", "fourth_down_conversion_percentage", "td"),
+    StatConfig(0, "red_zone_att", "red_zone_attempts", "td"),
+    StatConfig(0, "red_zone_scores", "red_zone_conversions", "td"),
+    StatConfig(0, "red_zone_pct", "red_zone_conversion_percentage", "td"),
+    StatConfig(1, "third_down_att", "third_down_attempts_against", "td"),
+    StatConfig(1, "third_down_success", "third_down_conversions_against", "td"),
+    StatConfig(1, "third_down_pct", "third_down_conversion_percentage_against", "td"),
+    StatConfig(1, "fourth_down_att", "fourth_down_attempts_against", "td"),
+    StatConfig(1, "fourth_down_success", "fourth_down_conversions_against", "td"),
+    StatConfig(1, "fourth_down_pct", "fourth_down_conversion_percentage_against", "td"),
+    StatConfig(1, "red_zone_att", "red_zone_attempts_against", "td"),
+    StatConfig(1, "red_zone_scores", "red_zone_conversions_against", "td"),
+    StatConfig(1, "red_zone_pct", "red_zone_conversion_percentage_against", "td"),
+]
+
+PLAYER_CONFIG = [
+    StatConfig(None, "age", "player_age", "td"),
+    StatConfig(None, "pos", "position", "td"),
+]
