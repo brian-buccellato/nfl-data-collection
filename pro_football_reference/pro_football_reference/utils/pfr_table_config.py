@@ -93,3 +93,19 @@ PLAYER_CONFIG = [
     StatConfig(None, "age", "player_age", "td"),
     StatConfig(None, "pos", "position", "td"),
 ]
+
+PLAYER_PUNT_AND_KICK_RETURNER_CONFIG = [
+    StatConfig(None, "games_started", "games_started", "td"),
+    StatConfig(None, "punt_ret", "punt_returns", "td"),
+    StatConfig(None, "punt_ret_yds", "punt_return_yards", "td"),
+    StatConfig(None, "punt_ret_td", "punt_return_touchdowns", "td"),
+    StatConfig(None, "punt_ret_long", "punt_return_long", "td"),
+    StatConfig(None, "punt_ret_yds_per_ret", "punt_return_yards_per_return", "td"),
+    StatConfig(None, "kick_ret", "kick_returns", "td"),
+    StatConfig(None, "kick_ret_yds", "kick_return_yards", "td"),
+    StatConfig(None, "kick_ret_td", "kick_return_touchdowns", "td"),
+    StatConfig(None, "kick_ret_long", "kick_return_long", "td"),
+    StatConfig(None, "kick_ret_yds_per_ret", "kick_return_yards_per_return", "td"),
+    StatConfig(None, "all_purpose_yds", "all_purpose_yards", "td"),
+    StatConfig(None, "awards", "awards", "td"),
+]

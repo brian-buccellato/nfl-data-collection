@@ -10,6 +10,7 @@ from pro_football_reference.utils.pfr_table_config import (
     TEAM_STATS_AND_RANKINGS_CONFIG,
     TEAM_CONVERSIONS_CONFIG,
     PLAYER_CONFIG,
+    PLAYER_PUNT_AND_KICK_RETURNER_CONFIG
 )
 from pro_football_reference.settings import TEAM_ABBREVIATIONS
 from pro_football_reference.items import (
@@ -52,7 +53,7 @@ class TeamsPageSpider(ProFootballReferenceBase):
         {
             "item_class": PlayerPuntAndKickReturnerItem,
             "table_selector": "#returns > tbody > tr",
-            "stats_config": PLAYER_CONFIG,
+            "stats_config": PLAYER_PUNT_AND_KICK_RETURNER_CONFIG,
             "link_selector": "td[data-stat='name_display'] a::attr(href)",
         },
         {
@@ -94,6 +95,15 @@ class TeamsPageSpider(ProFootballReferenceBase):
         )
         return settings
 
+    def populate_item_fields(self, item, table, stats_config):
+        for config in stats_config:
+            item[config.attr] = self.get_table_item(
+                table=table,
+                data_stat=config.stat,
+                index=config.index,
+                table_part=config.table_part,
+            )
+
     def parse(self, response) -> Generator[TeamStatsAndRankingsItem, Any, None]:
         team = response.meta["team"]
         year = self.season_year
@@ -120,20 +130,8 @@ class TeamsPageSpider(ProFootballReferenceBase):
                     item["player_name"] = row.css(
                         "td[data-stat='name_display'] > a::text"
                     ).get()
-                    for config in c["stats_config"]:
-                        item[config.attr] = self.get_table_item(
-                            table=row,
-                            data_stat=config.stat,
-                            index=config.index,
-                            table_part=config.table_part,
-                        )
+                    self.populate_item_fields(item, row, c["stats_config"])
                     yield item
             else:
-                for config in c["stats_config"]:
-                    item[config.attr] = self.get_table_item(
-                        table=table,
-                        data_stat=config.stat,
-                        index=config.index,
-                        table_part=config.table_part,
-                    )
+                self.populate_item_fields(item, table, c["stats_config"])
                 yield item
