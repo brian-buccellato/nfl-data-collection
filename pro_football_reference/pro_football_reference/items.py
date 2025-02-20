@@ -76,10 +76,11 @@ class TeamStatsAndRankingsItem(scrapy.Item):
     points_per_drive = scrapy.Field()
     opponent_points_per_drive = scrapy.Field()
 
-
-class TeamConversionsItem(scrapy.Item):
+class TeamsPageBaseItem(scrapy.Item):
     team = scrapy.Field()
     year = scrapy.Field()
+
+class TeamConversionsItem(TeamsPageBaseItem):
     third_down_conversions = scrapy.Field()
     third_down_attempts = scrapy.Field()
     third_down_conversions_against = scrapy.Field()
@@ -100,9 +101,7 @@ class TeamConversionsItem(scrapy.Item):
     red_zone_conversion_percentage_against = scrapy.Field()
 
 
-class PlayerItem(scrapy.Item):
-    team = scrapy.Field()
-    year = scrapy.Field()
+class PlayerItem(TeamsPageBaseItem):
     position = scrapy.Field()
     player_name = scrapy.Field()
     player_age = scrapy.Field()
@@ -118,7 +117,19 @@ class PlayerRusherAndReceivingItem(PlayerItem):
 
 
 class PlayerPuntAndKickReturnerItem(PlayerItem):
-    pass
+    games_started = scrapy.Field()
+    punt_returns = scrapy.Field()
+    punt_return_yards = scrapy.Field()
+    punt_return_touchdowns = scrapy.Field()
+    punt_return_long = scrapy.Field()
+    punt_return_yards_per_return = scrapy.Field()
+    kick_returns = scrapy.Field()
+    kick_return_yards = scrapy.Field()
+    kick_return_touchdowns = scrapy.Field()
+    kick_return_long = scrapy.Field()
+    kick_return_yards_per_return = scrapy.Field()
+    all_purpose_yards = scrapy.Field()
+    awards = scrapy.Field()
 
 
 class PlayerKickerItem(PlayerItem):
