@@ -55,9 +55,9 @@ class ProFootballReferencePipeline:
         for c in self.config:
             df = pl.DataFrame(dict(item) for item in c["items"])
             if not df.is_empty():
-              year = df["year"].first()
-              path = f"s3://{self.s3_bucket_name}/{c['path']}/{year}/{c['file_name']}"
-              self.upload_items_to_s3(df=df, path=path)
+                year = df["year"].first()
+                path = f"s3://{self.s3_bucket_name}/{c['path']}/{year}/{c['file_name']}"
+                self.upload_items_to_s3(df=df, path=path)
 
 
 class TeamsPagePipeline(ProFootballReferencePipeline):

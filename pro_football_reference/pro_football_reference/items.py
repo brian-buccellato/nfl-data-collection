@@ -99,6 +99,7 @@ class TeamConversionsItem(scrapy.Item):
     red_zone_attempts_against = scrapy.Field()
     red_zone_conversion_percentage_against = scrapy.Field()
 
+
 class PlayerItem(scrapy.Item):
     team = scrapy.Field()
     year = scrapy.Field()
@@ -107,20 +108,26 @@ class PlayerItem(scrapy.Item):
     player_age = scrapy.Field()
     player_link = scrapy.Field()
 
+
 class PlayerPasserItem(PlayerItem):
     pass
-    
+
+
 class PlayerRusherAndReceivingItem(PlayerItem):
     pass
-    
+
+
 class PlayerPuntAndKickReturnerItem(PlayerItem):
     pass
-    
+
+
 class PlayerKickerItem(PlayerItem):
     pass
+
 
 class PlayerPunterItem(PlayerItem):
     pass
 
+
 class PlayerDefenseAndFumblesItem(PlayerItem):
-    pass    
+    pass

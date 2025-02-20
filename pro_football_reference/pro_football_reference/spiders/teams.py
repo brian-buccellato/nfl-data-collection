@@ -97,15 +97,19 @@ class TeamsPageSpider(ProFootballReferenceBase):
     def parse(self, response) -> Generator[TeamStatsAndRankingsItem, Any, None]:
         team = response.meta["team"]
         year = self.season_year
-       
+
         # Extract table tags
-        table_tags = re.findall(r'(<table.*?>.*?</table>)', response.text, flags=re.DOTALL)
+        table_tags = re.findall(
+            r"(<table.*?>.*?</table>)", response.text, flags=re.DOTALL
+        )
 
         # Join the extracted table tags into a single string
-        cleaned_response_text = ''.join(table_tags)
+        cleaned_response_text = "".join(table_tags)
 
         # Create a new response object with the cleaned response text
-        cleaned_response = scrapy.http.HtmlResponse(url=response.url, body=cleaned_response_text, encoding='utf-8')
+        cleaned_response = scrapy.http.HtmlResponse(
+            url=response.url, body=cleaned_response_text, encoding="utf-8"
+        )
         for c in self.config:
             table = cleaned_response.css(c["table_selector"])
             item = c["item_class"](team=team, year=year)
