@@ -122,9 +122,9 @@ class TeamsPageSpider(ProFootballReferenceBase):
         )
         for c in self.config:
             table = cleaned_response.css(c["table_selector"])
-            item = c["item_class"](team=team, year=year)
             if "link_selector" in c:
                 for row in table:
+                    item = c["item_class"](team=team, year=year)
                     player_page_link = row.css(c["link_selector"]).get()
                     item["player_link"] = player_page_link
                     item["player_name"] = row.css(
@@ -133,5 +133,6 @@ class TeamsPageSpider(ProFootballReferenceBase):
                     self.populate_item_fields(item, row, c["stats_config"])
                     yield item
             else:
+                item = c["item_class"](team=team, year=year)
                 self.populate_item_fields(item, table, c["stats_config"])
                 yield item
