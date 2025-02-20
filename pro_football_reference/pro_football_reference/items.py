@@ -5,7 +5,9 @@
 
 import scrapy
 
+
 class GameResultItem(scrapy.Item):
+    year = scrapy.Field()
     week = scrapy.Field()
     day_of_week = scrapy.Field()
     game_date = scrapy.Field()
@@ -73,4 +75,59 @@ class TeamStatsAndRankingsItem(scrapy.Item):
     opponent_yards_per_drive = scrapy.Field()
     points_per_drive = scrapy.Field()
     opponent_points_per_drive = scrapy.Field()
-    
+
+
+class TeamConversionsItem(scrapy.Item):
+    team = scrapy.Field()
+    year = scrapy.Field()
+    third_down_conversions = scrapy.Field()
+    third_down_attempts = scrapy.Field()
+    third_down_conversions_against = scrapy.Field()
+    third_down_attempts_against = scrapy.Field()
+    third_down_conversion_percentage = scrapy.Field()
+    third_down_conversion_percentage_against = scrapy.Field()
+    fourth_down_conversions = scrapy.Field()
+    fourth_down_attempts = scrapy.Field()
+    fourth_down_conversion_percentage = scrapy.Field()
+    fourth_down_conversions_against = scrapy.Field()
+    fourth_down_attempts_against = scrapy.Field()
+    fourth_down_conversion_percentage_against = scrapy.Field()
+    red_zone_conversions = scrapy.Field()
+    red_zone_attempts = scrapy.Field()
+    red_zone_conversion_percentage = scrapy.Field()
+    red_zone_conversions_against = scrapy.Field()
+    red_zone_attempts_against = scrapy.Field()
+    red_zone_conversion_percentage_against = scrapy.Field()
+
+
+class PlayerItem(scrapy.Item):
+    team = scrapy.Field()
+    year = scrapy.Field()
+    position = scrapy.Field()
+    player_name = scrapy.Field()
+    player_age = scrapy.Field()
+    player_link = scrapy.Field()
+
+
+class PlayerPasserItem(PlayerItem):
+    pass
+
+
+class PlayerRusherAndReceivingItem(PlayerItem):
+    pass
+
+
+class PlayerPuntAndKickReturnerItem(PlayerItem):
+    pass
+
+
+class PlayerKickerItem(PlayerItem):
+    pass
+
+
+class PlayerPunterItem(PlayerItem):
+    pass
+
+
+class PlayerDefenseAndFumblesItem(PlayerItem):
+    pass
